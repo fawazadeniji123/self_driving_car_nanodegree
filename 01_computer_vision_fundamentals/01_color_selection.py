@@ -3,7 +3,7 @@ import matplotlib.image as mpimg
 import numpy as np
 
 # Read in the image and print out some stats
-image = mpimg.imread("test.jpg")
+image = mpimg.imread("color_selection_test.jpg")
 print("This image is: ", type(image), "with dimensions:", image.shape)
 
 # Grab the x and y size and make a copy of the image
@@ -15,9 +15,9 @@ color_select = np.copy(image)
 # Define our color selection criteria
 # Note: if you run this code, you'll find these are not sensible values!!
 # But you'll get a chance to play with them soon in a quiz
-red_threshold = 0
-green_threshold = 0
-blue_threshold = 0
+red_threshold = 200
+green_threshold = 200
+blue_threshold = 200
 rgb_threshold = [red_threshold, green_threshold, blue_threshold]
 
 # Identify pixels below the threshold
@@ -26,8 +26,14 @@ thresholds = (
     | (image[:, :, 1] < rgb_threshold[1])
     | (image[:, :, 2] < rgb_threshold[2])
 )
+print("thresholds shape: ", thresholds.shape)
+print("thresholds: ", thresholds)
 color_select[thresholds] = [0, 0, 0]
+print("color_select shape: ", color_select.shape)
 
 # Display the image
-plt.imshow(color_select)
-plt.show()
+# plt.imshow(color_select)
+# plt.show()
+
+# save the image as color_selection_result.jpg
+mpimg.imsave("color_selection_result.jpg", color_select)
