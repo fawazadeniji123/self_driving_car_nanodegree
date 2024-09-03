@@ -49,3 +49,5 @@ plt.imshow(region_select)
 
 # save the image
 mpimg.imsave("02_region_masking_result.jpg", region_select)
+
+print("region_select shape: ", region_select.shape)
